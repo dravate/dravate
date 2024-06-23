@@ -1,0 +1,53 @@
+<script src="https://unpkg.com/vue@3"></script>
+{% load  static sarathi_tags  wagtailimages_tags %}
+<div id="navigation">
+
+
+  <!--- BLUE NAVBAR -->
+  <nav class="flex items-center justify-between  bg-blue-500 p-2 md:p-6 mb-3">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+             {% sarathidravatelogo  as logo %}
+             {% image  logo.logo  fill-125x125 %}
+      <div class="pl-4"> <a href="javascript:{}" class="text-xs sm:text-2xl">{{ settings.home.SiteSettings.title_suffix }}</a> </div> 
+    </div>
+    <div class="block lg:hidden">
+      <button @click="toggleMenuOpen()" class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      </button>
+    </div>
+    <div :class="[isOpened ? 'block' : 'hidden']" class="w-full flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="lg:flex-grow">
+      </div>
+      <div>
+
+                    {% get_site_root as site_root %}
+                    {% top_menu parent=site_root calling_page=self %}
+      </div>
+    </div>
+  </nav>
+  
+</div>
+<script> 
+
+const App = {
+             data ()  {
+                         return {
+                                   isOpened: false
+                        }
+            },
+     methods: {
+                  toggleMenuOpen() {
+                            this.isOpened = ! this.isOpened;
+                  },
+     },
+
+  mounted() {
+   }
+};
+
+const app = Vue.createApp(App)
+app.mount('#navigation');
+
+</script> 
+
+

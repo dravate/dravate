@@ -1,0 +1,7 @@
+{% load sarathi_tags  wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+{% for menuitem in menuitems %}
+    <a href="{% pageurl menuitem %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">  {{ menuitem.title }} </a> 
+{% endfor %}
+

@@ -1,0 +1,31 @@
+{% load wagtailimages_tags %}
+<style>    
+
+pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+
+</style>
+
+
+{% for  key, value in self.code.items %}
+      {% comment %} {% if  key == 'language' %} {{ value  }} {% endif %}  {% endcomment %} 
+      <div class=" md:my-10 md:mx-24 rounded rounded-3xl shadow shadow-lg bg-gray-200 "> {% if  key == 'text' %} <div class="whitespace-pre py-4 mx-4 md:mx-24 text-2xl">  {{ value  }} </div>  {% endif %}  </div> 
+{% endfor %} 
+
+
+
