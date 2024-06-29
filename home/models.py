@@ -21,7 +21,6 @@ from .blocks import BaseStreamBlock
 from django.contrib.contenttypes.fields import GenericRelation 
 from modelcluster.fields import ParentalKey
 
-
 class HomePage(Page):
     """
     The Home Page. This looks slightly more complicated than it is. You can

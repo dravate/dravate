@@ -15,8 +15,8 @@ class CodeBlock(StructBlock):
                 ('language', ChoiceBlock(choices=[
                     ('python', 'Python'),
                     ('javascript', 'Javascript'),
-                   ('htmlmixed', 'HTML'),
-                    ('css', 'CSS'),
+                     ('htmlmixed', 'HTML'),
+                     ('css', 'CSS'),
                     ('shell', 'Shell'),
                 ])),
                ('text', TextBlock()),
@@ -100,5 +100,29 @@ class BaseStreamBlock(StreamBlock):
         max_height=400,
         template="blocks/embed_block.html"
     )
+# for instructor only 
 
+class ProfileBlock(StructBlock):
+    """
+    Custom `StructBlock` for utilizing images with associated caption and
+    attribution data
+    """
+      
+    image = ImageChooserBlock(required=True)
+    firstname = CharBlock(required=True) 
+    lastname  = CharBlock(required=False)
+    title  = CharBlock(required=False)
+    linkedin  = CharBlock(required=False)
+    short_profile  = CharBlock(required=False)
+
+    class Meta:
+        icon = "image"
+        template = "blocks/profile_image_block.html"
+
+
+
+# Instructore - used for training/courses pages
+class TrainerBlock(StreamBlock):
+      profile = ProfileBlock()
+      
 

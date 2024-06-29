@@ -10,7 +10,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import Tag, TaggedItemBase
-from home.blocks import BaseStreamBlock
+from home.blocks import BaseStreamBlock, TrainerBlock
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 class CoursesIndexPage(RoutablePageMixin, Page):
@@ -106,9 +106,8 @@ class CoursesPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
-    )
+    body = StreamField( BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True)
+    trainers = StreamField( TrainerBlock(), verbose_name="Trainers", blank=True, use_json_field=True)
 
     tags = ClusterTaggableManager(through=CoursesPageTag, blank=True)
 
@@ -116,9 +115,11 @@ class CoursesPage(Page):
         index.SearchField('summary'),
         index.SearchField('author'),
         index.SearchField('body'),
+        index.SearchField('trainers'),
     ]
 
     content_panels = Page.content_panels + [
+        FieldPanel('trainers'),
         FieldPanel('date'),
         FieldPanel('summary'),
         FieldPanel('start_date'),
