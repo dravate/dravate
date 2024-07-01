@@ -3,16 +3,17 @@
 
 {% if ancestors %}
 <nav class="container">
-  <ol class="list-reset py-4 pl-4 rounded flex bg-grey-light text-grey">
-                        {% for ancestor in ancestors %}
-                                  {% if forloop.last %}
-                                           <li class="px-2"><a href="#" class="no-underline text-indigo">{{ ancestor }} </a></li>
-                                  {% else %} 
-                                       <li class="px-2"><a href="{% pageurl ancestor %}" class="no-underline text-indigo"> {% if forloop.first %}Home{% else %}{{ ancestor }}{% endif %} </a></li>
-                                           <li> / </li>
-                                  {% endif %} 
-                       {% endfor %} 
-  </ol>
+<div class="py-4 pl-4 rounded flex bg-grey-light text-grey list-none">
+          {% for ancestor in ancestors %}
+                  {% if forloop.last %}
+                       <li class="px-2"><a href="#" class="no-underline text-indigo">{{ ancestor }} </a></li>
+                              {% else %} 
+                       <li class="px-2"><a href="{% pageurl ancestor %}" class="no-underline text-indigo"> 
+                                    {% if forloop.first %} Home{% else %} {{ ancestor }}{% endif %} </a></li>
+                       <li> / </li>
+                {% endif %} 
+          {% endfor %} 
+  </div>
 </nav>
 {% endif %}
 

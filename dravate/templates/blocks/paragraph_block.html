@@ -1,11 +1,19 @@
 <style> 
-
-p {
-   margin: 10px;
+   p {
+         margin: 10px;
+  }
+  ol {
+        list-style: none;
+        counter-reset: cupcake;
+        padding-left: 32px;
+ }
+ ol li {
+        counter-increment: cupcake;
+}
+ol li:before {
+  content: counters(cupcake, ".") ". ";
 }
 
-
 </style> 
-
 
 <div class="text-sm md:text-xl mb-10 px-4 "> {{ self }} </div> 
