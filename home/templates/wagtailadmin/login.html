@@ -1,0 +1,25 @@
+{% extends "wagtailadmin/login.html" %}
+{% load  static sarathi_tags  wagtailimages_tags %}
+
+{% block branding_login %}
+
+<h1 class="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">Sarathi Dravate</h1>{% endblock %}
+
+  
+
+ {% block branding_logo %}
+  {% sarathidravatelogo  as logo %}
+  <div style="
+    background: black;
+    margin-top: 10px;
+    border-radius: 20px;
+   display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+">          
+             {% image  logo.logo  fill-125x125 %} 
+</div>
+   {% endblock %}
+
