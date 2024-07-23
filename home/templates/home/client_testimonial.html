@@ -13,11 +13,11 @@
               <div class="swiper-wrapper">
               {% for entry in clientreco %}
                      <article class="card__article swiper-slide pb-10 px-2 md:px-10  border border-gray-500 rounded-xl">
-                         <span class="inline-flex items-baseline border-b border-yellow-900 pb-2">
+                         <span class="inline-flex items-baseline border-b border-yellow-900 py-2">
                               {% image  entry.client_logo  max-96x96 format-webp  class="self-center bg-gray-900 w-auto h-12 mx-1 rounded rounded-3xl" %}
                               <span class=" text-xl font-bold text-gray-900 pt-2 px-12"> {{ entry.company }} </span>
                          </span>
-                     <div class="card__data h-24 mt-10">
+                     <div class="card__data h-32 mt-10">
                          <p class="card__description text-gray-900 text-left h-20"> {{ entry.testimonial }} </p>
                      </div>
                      <span class="inline-flex items-center">
