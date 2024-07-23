@@ -20,6 +20,8 @@ from wagtail.fields import RichTextField, StreamField
 from .blocks import BaseStreamBlock
 from django.contrib.contenttypes.fields import GenericRelation 
 from modelcluster.fields import ParentalKey
+from wagtail.search import index
+
 
 class HomePage(Page):
     """
@@ -184,6 +186,12 @@ class HomePage(Page):
         ),
     ]
 
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['clientreco'] = Clientrecommendation.objects.live()
+        return context
+  
+
     def __str__(self):
         return self.title
 
@@ -342,4 +350,43 @@ class FormPage(AbstractEmailForm):
             "Email",
         ),
     ]
+
+
+class Clientrecommendation(Page):
+    name = models.CharField(max_length=255)
+    position = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255)
+    testimonial = models.CharField(max_length=1000)
+    person_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    client_logo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    search_fields = Page.search_fields + [
+        index.SearchField('position'),
+        index.SearchField('testimonial'),
+        index.SearchField('subject'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('name'),
+        FieldPanel('position'),
+        FieldPanel('company'),
+        FieldPanel('subject'),
+        FieldPanel('testimonial'),
+        FieldPanel('person_image'),
+        FieldPanel('client_logo'),
+    ]
+
 

@@ -1,5 +1,7 @@
 {% extends "wagtailadmin/login.html" %}
 {% load  static sarathi_tags  wagtailimages_tags %}
+{% load i18n wagtailadmin_tags %}
+{% block titletag %}{% trans "Welcome to Sarathi Dravate" %}{% endblock %}
 
 {% block branding_login %}
 
@@ -7,19 +9,10 @@
 
   
 
- {% block branding_logo %}
-  {% sarathidravatelogo  as logo %}
-  <div style="
-    background: black;
-    margin-top: 10px;
-    border-radius: 20px;
-   display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-">          
+{% block branding_logo %}
+{% sarathidravatelogo  as logo %}
+  <div style=" background: black; margin-top: 10px; border-radius: 20px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; ">          
              {% image  logo.logo  fill-125x125 %} 
-</div>
-   {% endblock %}
+  </div>
+{% endblock %}
 
